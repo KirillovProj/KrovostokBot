@@ -149,6 +149,5 @@ async def handle_new_users(message):
             pass
 
 
-if __name__ == '__main__':
-    scheduler.start()
-    executor.start_polling(dp, on_startup=on_startup)
+scheduler.start()
+executor.start_polling(dp, on_startup=on_startup)
