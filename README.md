@@ -1,4 +1,4 @@
-#[Krovostok](https://en.wikipedia.org/wiki/Krovostok) Quote of the Day Telegram bot
+# [Krovostok](https://en.wikipedia.org/wiki/Krovostok) Quote of the Day Telegram bot
 
 Available @KrovostokQOTbot
 
