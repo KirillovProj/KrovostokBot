@@ -9,4 +9,4 @@ password = os.environ['DB_PASSWORD']
 hostname = os.environ['HOSTNAME']
 port = os.environ['DB_PORT']
 
-conn = pg.connect(database=db_name, user=username, password=password, host=hostname, port=port)
+conn = pg.connect(database=db_name, user=username, password=password, host=hostname, port=port, sslmode='require')
