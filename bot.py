@@ -63,7 +63,7 @@ async def send_song_name(message: types.Message) -> None:
     except TypeError:
         await quote_bot.send_message(message.chat.id,
                                      '''Шило для тебя еще не пел. Он зачитывает свои
-                                      строки каждый день около 12 (если сегодня без похмелья)''')
+                                      строки каждый день около 12''')
     except AttributeError:
         try:
             songname = db.get_song_name(message.from_user.id)
@@ -71,7 +71,7 @@ async def send_song_name(message: types.Message) -> None:
         except TypeError:
             await quote_bot.send_message(message.chat.id,
                                          '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12 (если сегодня без похмелья)''')
+                                                  строки каждый день около 12''')
         except AttributeError:
             pass
 
@@ -92,7 +92,7 @@ async def send_song_link(message):
     except TypeError:
         await quote_bot.send_message(message.chat.id,
                                      '''Шило для тебя еще не пел. Он зачитывает свои
-                                              строки каждый день около 12 (если сегодня без похмелья)''')
+                                              строки каждый день около 12''')
     except AttributeError:
         try:
             songlink = db.get_song_link(message.from_user.id)
@@ -100,7 +100,7 @@ async def send_song_link(message):
         except TypeError:
             await quote_bot.send_message(message.chat.id,
                                          '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12 (если сегодня без похмелья)''')
+                                                  строки каждый день около 12''')
         except AttributeError:
             pass
 
