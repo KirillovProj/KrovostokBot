@@ -36,7 +36,7 @@ def schedule_jobs() -> None:
     AsyncIOScheduler.add_job documentation to learn more about configuring this period of time. It's pretty flexible.
     Here it is set on every day at 12:30 server time.
     """
-    scheduler.add_job(send_quote, 'cron', hour=7 minutes=30)
+    scheduler.add_job(send_quote, 'cron', hour=7 minute=30)
 
 
 async def on_startup(dp: Dispatcher) -> None:
