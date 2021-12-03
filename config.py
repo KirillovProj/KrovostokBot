@@ -1,12 +1,16 @@
 import psycopg2 as pg
 import os
+import re
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
 
-db_name = os.environ['DB_NAME']
-username = os.environ['DB_USERNAME']
-password = os.environ['DB_PASSWORD']
-hostname = os.environ['HOSTNAME']
-port = os.environ['DB_PORT']
+DATABASE_URL = os.environ['DATABSE_URL']
+parsed = re.findall('[\w\.-]+', DATABASE_URL)
+
+username = parsed[1]
+password = parsed[2]
+hostname = parsed[3]
+port = parsed[4]
+db_name = parsed[5]
 
 conn = pg.connect(database=db_name, user=username, password=password, host=hostname, port=port, sslmode='require')
