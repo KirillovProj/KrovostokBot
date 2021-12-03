@@ -4,7 +4,7 @@ import re
 
 TOKEN = os.environ['TELEGRAM_TOKEN']
 
-DATABASE_URL = os.environ['DATABSE_URL']
+DATABASE_URL = os.environ['DATABASE_URL']
 parsed = re.findall('[\w\.-]+', DATABASE_URL)
 
 username = parsed[1]
