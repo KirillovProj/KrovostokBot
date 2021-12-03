@@ -47,7 +47,7 @@ async def on_startup(dp: Dispatcher) -> None:
     schedule_jobs()
 
 
-@dp.message_handler(commands=['Song', 'song'])
+@dp.message_handler(commands=['song'])
 async def send_song_name(message: types.Message) -> None:
     """
     Uses id found in message dict to call database and find the name of the song which was last sent to user or chat.
@@ -76,8 +76,8 @@ async def send_song_name(message: types.Message) -> None:
             pass
 
 
-@dp.message_handler(commands=['Link', 'link', 'youtube', 'Youtube', 'YouTube'])
-async def send_song_link(message):
+@dp.message_handler(commands=['link'])
+async def send_song_link(message) -> None:
     """
     Uses id found in message dict to call database and find YouTube link to the song which was last sent to user or
     chat. If database returns TypeError it most of the times mean that last_quote field for this id is None,
@@ -105,8 +105,8 @@ async def send_song_link(message):
             pass
 
 
-@dp.message_handler(commands=['register', 'Register'])
-async def handle_new_users(message):
+@dp.message_handler(commands=['register'])
+async def handle_new_users(message) -> None:
     """
     Handles /register message from group or user.
     After getting a new message from user or from group bot will try to add received id to database.
@@ -128,8 +128,8 @@ async def handle_new_users(message):
             pass
 
 
-@dp.message_handler(commands=['help', 'Help'])
-async def handle_new_users(message):
+@dp.message_handler(commands=['help'])
+async def handle_new_users(message) -> None:
     """
     Handles /help message providing info on how to use this bot.
     Similar to other message handlers.
