@@ -11,4 +11,4 @@ Returns a name of the song from which last quote is originated.
 ### /link (or /youtube)
 Returns a YouTube link to the song from which last quote is originated.
 ##
-### With several little changes this bot can be turned from Krovostok QotD bot to any band/singer (or even book author!) QotD bot
+### With several little changes this bot can be turned from Krovostok QotD bot to any band/singer (or even book author!) QotD bot. See 'master' branch.
