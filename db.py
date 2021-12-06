@@ -91,7 +91,7 @@ def get_quote_by_id(id: int) -> str:
             SELECT text FROM Quotes WHERE quote_id=%s;
             ''', (id,))
         except TypeError:
-            return 'Шило сегодня с похмелья и не может выйти на сцену'
+            return 'INSERT YOUR PLUG-STRING'
         return cur.fetchone()[0]
 
 
