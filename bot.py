@@ -10,6 +10,9 @@ quote_bot = Bot(TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(quote_bot, storage=storage)
 scheduler = AsyncIOScheduler()
+on_premature_request = 'STRING THAT WILL BE USED FOR PREMATURE REQUEST CASES'
+on_successful_reg = 'STRING THAT WILL BE USED FOR SUCCESSFUL REGISTRATION MESSAGE'
+on_help = 'STRING THAT WILL BE SHOWN FOR /HELP COMMAND'
 
 
 async def send_quote() -> None:
@@ -45,7 +48,7 @@ async def on_startup(dp: Dispatcher) -> None:
     You can also put all type of logger initializers etc here.
     """
     schedule_jobs()
-
+  
 
 @dp.message_handler(commands=['song'])
 async def send_song_name(message: types.Message) -> None:
@@ -61,17 +64,13 @@ async def send_song_name(message: types.Message) -> None:
         songname = db.get_song_name(message.chat.id)
         await quote_bot.send_message(message.chat.id, songname)
     except TypeError:
-        await quote_bot.send_message(message.chat.id,
-                                     '''Шило для тебя еще не пел. Он зачитывает свои
-                                      строки каждый день около 12''')
+        await quote_bot.send_message(message.chat.id, on_premature_request)
     except AttributeError:
         try:
             songname = db.get_song_name(message.from_user.id)
             await quote_bot.send_message(message.from_user.id, songname)
         except TypeError:
-            await quote_bot.send_message(message.chat.id,
-                                         '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12''')
+            await quote_bot.send_message(message.chat.id, on_premature_request)
         except AttributeError:
             pass
 
@@ -90,17 +89,13 @@ async def send_song_link(message) -> None:
         songlink = db.get_song_link(message.chat.id)
         await quote_bot.send_message(message.chat.id, songlink)
     except TypeError:
-        await quote_bot.send_message(message.chat.id,
-                                     '''Шило для тебя еще не пел. Он зачитывает свои
-                                              строки каждый день около 12''')
+        await quote_bot.send_message(message.chat.id, on_premature_request)
     except AttributeError:
         try:
             songlink = db.get_song_link(message.from_user.id)
             await quote_bot.send_message(message.from_user.id, songlink)
         except TypeError:
-            await quote_bot.send_message(message.chat.id,
-                                         '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12''')
+            await quote_bot.send_message(message.chat.id, on_premature_request)
         except AttributeError:
             pass
 
@@ -115,15 +110,13 @@ async def handle_new_users(message) -> None:
     """
     try:
         db.add_user(message.chat.id)
-        await quote_bot.send_message(message.chat.id, """Билет на концерт 'Кровостока' успешно куплен. 
-        Встречаемся каждый день здесь в 12:30.""")
+        await quote_bot.send_message(message.chat.id, on_successful_reg)
     except TypeError:
         pass
     except AttributeError:
         try:
             db.add_user(message.from_user.id)
-            await quote_bot.send_message(message.from_user.id, """Билет на концерт 'Кровостока' успешно куплен. 
-                    Встречаемся каждый день здесь в 12:30.""")
+            await quote_bot.send_message(message.from_user.id, on_successful_reg)
         except (TypeError, AttributeError):
             pass
 
@@ -135,16 +128,10 @@ async def handle_new_users(message) -> None:
     Similar to other message handlers.
     """
     try:
-        await quote_bot.send_message(message.chat.id, """Эй, тупо запомните эти простые команды:\n
-        /register поможет купить билеты на концерт 'Кровостока'\n
-        /song — и я скажу название песни, из которой взята последняя цитата\n
-        /link — и я пришлю ссылку на последнюю песню""")
+        await quote_bot.send_message(message.chat.id, on_help)
     except AttributeError:
         try:
-            await quote_bot.send_message(message.from_user.id, """Эй, тупо запомните эти простые команды:\n
-        /register поможет купить билеты на концерт 'Кровостока'\n
-        /song — и я скажу название песни, из которой взята последняя цитата\n
-        /link — и я пришлю ссылку на последнюю песню""")
+            await quote_bot.send_message(message.from_user.id, on_help)
         except AttributeError:
             pass
 
