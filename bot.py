@@ -63,7 +63,7 @@ async def send_song_name(message: types.Message) -> None:
     except TypeError:
         await quote_bot.send_message(message.chat.id,
                                      '''Шило для тебя еще не пел. Он зачитывает свои
-                                      строки каждый день около 12''')
+                                      строки каждый день около 10:30''')
     except AttributeError:
         try:
             songname = db.get_song_name(message.from_user.id)
@@ -71,7 +71,7 @@ async def send_song_name(message: types.Message) -> None:
         except TypeError:
             await quote_bot.send_message(message.chat.id,
                                          '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12''')
+                                                  строки каждый день около 10:30''')
         except AttributeError:
             pass
 
@@ -92,7 +92,7 @@ async def send_song_link(message) -> None:
     except TypeError:
         await quote_bot.send_message(message.chat.id,
                                      '''Шило для тебя еще не пел. Он зачитывает свои
-                                              строки каждый день около 12''')
+                                              строки каждый день около 10:30''')
     except AttributeError:
         try:
             songlink = db.get_song_link(message.from_user.id)
@@ -100,7 +100,7 @@ async def send_song_link(message) -> None:
         except TypeError:
             await quote_bot.send_message(message.chat.id,
                                          '''Шило для тебя еще не пел. Он зачитывает свои
-                                                  строки каждый день около 12''')
+                                                  строки каждый день около 10:30''')
         except AttributeError:
             pass
 
@@ -116,14 +116,14 @@ async def handle_new_users(message) -> None:
     try:
         db.add_user(message.chat.id)
         await quote_bot.send_message(message.chat.id, """Билет на концерт 'Кровостока' успешно куплен. 
-        Встречаемся каждый день здесь в 12:30.""")
+        Встречаемся каждый день здесь в 10:30""")
     except TypeError:
         pass
     except AttributeError:
         try:
             db.add_user(message.from_user.id)
             await quote_bot.send_message(message.from_user.id, """Билет на концерт 'Кровостока' успешно куплен. 
-                    Встречаемся каждый день здесь в 12:30.""")
+                    Встречаемся каждый день здесь в 10:30""")
         except (TypeError, AttributeError):
             pass
 
